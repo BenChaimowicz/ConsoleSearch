@@ -124,6 +124,7 @@ namespace SearchApp
             Console.WriteLine();
             Console.WriteLine("Number of results: " + currentSearch.Results.Count);
             Console.WriteLine("Permission exceptions: " + currentSearch.PermissionExceptions);
+            Console.WriteLine("Search saved in database.");
             Console.WriteLine("Press any key to continue...");
             Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.Gray;
