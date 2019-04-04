@@ -30,8 +30,15 @@ namespace DAL
                 Results = results,
                 Date = date
             };
-            DataBase.Searches.Add(search);
-            DataBase.SaveChanges();
+            try
+            {
+                DataBase.Searches.Add(search);
+                DataBase.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
     }
 }

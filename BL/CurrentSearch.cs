@@ -21,8 +21,8 @@ namespace BL
         public CurrentSearch(string file, string dirs)
         {
             rootSearched = false;
-            SearchFile = file.ToLower();
-            SearchDirectory = dirs.ToLower();
+            SearchFile = file.ToLower().Trim();
+            SearchDirectory = dirs.ToLower().Trim();
             Results = new List<string>();
             SearchDate = DateTime.Now;
             PermissionExceptions = 0;

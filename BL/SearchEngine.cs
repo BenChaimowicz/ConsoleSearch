@@ -53,33 +53,30 @@ namespace BL
             }
         }
 
-        public static void SearchFile(string sDir)
+        private static void FindResults(string dir)
+        {
+            foreach (string file in Directory.GetFiles(dir))
+            {
+                string fileonly = file.Substring(file.LastIndexOf("\\"));
+                if (fileonly.ToLower().Contains(currentSearch.SearchFile))
+                {
+                    currentSearch.AddResult(file.ToLower());
+                }
+            }
+        }
+
+        private static void SearchFile(string sDir)
         {
             if (!currentSearch.rootSearched)
             {
-
-                foreach (string file in Directory.GetFiles(sDir))
-                {
-                    string fileonly = file.Substring(file.LastIndexOf("\\"));
-                    if (fileonly.ToLower().Contains(currentSearch.SearchFile))
-                    {
-                        currentSearch.AddResult(file.ToLower());
-                    }
-                }
+                FindResults(sDir);
                 currentSearch.rootSearched = true;
             }
             foreach (string dir in Directory.GetDirectories(sDir))
             {
                 try
                 {
-                    foreach (string file in Directory.GetFiles(dir))
-                    {
-                        string fileonly = file.Substring(file.LastIndexOf("\\"));
-                        if (fileonly.ToLower().Contains(currentSearch.SearchFile))
-                        {
-                            currentSearch.AddResult(file.ToLower());
-                        }
-                    }
+                    FindResults(dir);
                     SearchFile(dir);
                 }
                 catch (UnauthorizedAccessException)

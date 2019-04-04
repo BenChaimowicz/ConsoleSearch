@@ -58,6 +58,7 @@ namespace SearchApp
             if (filename != null && filename != "" && filename.Trim(' ').Length != 0)
             {
                 SearchEngine.NewSearch(filename, "none");
+                Console.WriteLine("Searching. Please wait...");
                 SearchEngine.currentSearch.ResultFound += OnResultFound;
                 SearchEngine.Start();
                 Summarize(SearchEngine.currentSearch);
@@ -69,7 +70,7 @@ namespace SearchApp
                 ShowMenu();
             }
         }
-
+        
         private void SearchDir()
         {
             Console.WriteLine("Enter file name to search:");
@@ -88,6 +89,7 @@ namespace SearchApp
                 directory = Console.ReadLine();
             }
             SearchEngine.NewSearch(filename, directory);
+            Console.WriteLine("Searching. Please wait...");
             SearchEngine.currentSearch.ResultFound += OnResultFound;
             SearchEngine.DirDoesNotExist += OnDirDoesNotExist;
             SearchEngine.Start();
